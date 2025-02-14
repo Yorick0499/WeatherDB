@@ -1,0 +1,5 @@
+{
+    "station": ["bialystok", "bielsko biala", "chojnice", "czestochowa", "elblag", "gdansk", "gorzow", "hel", "jelenia gora", "kalisz", "kasprowy wierch", "katowice", "ketrzyn", "kielce", "klodzko", "kolo", "kolobrzeg", "koszalin", "kozienice", "krakow", "krosno", "legnica", "lesko", "leszno", "lebork", "lublin", "leba", "lodz", "mikolajki", "mlawa", "nowy sacz", "olsztyn", "opole", "ostroleka", "pila", "platforma", "plock", "poznan", "przemysl", "raciborz", "resko", "rzeszow", "sandomierz", "siedlce", "slubice", "sulejow", "suwalki", "szczecin", "szczecinek", "sniezka", "swinoujscie", "tarnow", "terespol", "torun", "ustka", "warszawa", "wielun", "wlodawa", "wroclaw", "zakopane", "zamosc", "zielona gora"],
+    "server_cache": 1
+
+}
