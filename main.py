@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 class Weather_App:
     def __init__(self):
-        self.station = str(input('Podaj nazwę miejscowości: '))
+        self.station = os.getenv("STATION")
         self.station_denormalize = self.station
         self.available = 0
         self.update = 0
@@ -100,7 +100,7 @@ while run == True:
     test = Weather_App()
     test.run_test_app()
     print('\n1. Wróć\n2. Zakończ')
-    user_input = int(input(': '))
+    user_input = os.getenv("RETURN")
     os.system('clear')
     if user_input == 1:
         run = True
