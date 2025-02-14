@@ -5,7 +5,6 @@ import requests
 from pathlib import Path
 from datetime import datetime, timedelta
 from pymongo import MongoClient
-import credentials
 
 
 class Weather_App:
@@ -101,7 +100,7 @@ class Weather_App:
             ymd = f'{y}-0{m}-{d}'
         else:
             ymd = f'{y}-{m}-{d}'
-        client = MongoClient(credentials.MONGO_URI)
+        client = MongoClient(os.getenv("MONGO_URI"))
         db = client['weather']
         collection = db['cache']
         if h == 0:
