@@ -15,12 +15,6 @@ class Weather_App:
         self.available = 0
         self.update = 0
         self.cache_exists = 0
-    
-    def get_data(self):
-        file = open(f'cache/weather_{self.station}.json')
-        data = json.load(file)
-        print(f'Stacja: {data['stacja']}\nData pomiaru: {data['data_pomiaru']}\nGodzina pomiaru: {data['godzina_pomiaru']}:00\nTemperatura: {data['temperatura']}°C')
-        file.close()
 
     def text_normalize(self):
         os.system('clear')
@@ -50,47 +44,6 @@ class Weather_App:
         if self.station in data['station']:
             self.available = 1
         config.close()
-    
-    def save_data(self):
-        url = f'https://danepubliczne.imgw.pl/api/data/synop/station/{self.station}/format/json'
-        print('Aktualizowanie danych pogodowych...')
-        time.sleep(5)
-        os.system('clear')
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            with open(f'cache/weather_{self.station}.json','w') as file:
-                json.dump(data, file)
-        else:
-                print('No internet connection.')
-
-    def update_data(self):
-        y = datetime.now().year
-        m = datetime.now().month
-        d = datetime.now().day
-        ymd = f'{y}-{m}-{d}'
-        current_date = datetime.strptime(ymd, '%Y-%m-%d')
-        file = open(f'cache/weather_{self.station}.json')
-        data = json.load(file)
-        if datetime.strptime(data['data_pomiaru'], '%Y-%m-%d') < current_date:
-            self.update = 1
-        elif datetime.strptime(data['data_pomiaru'], '%Y-%m-%d') == current_date and int(data['godzina_pomiaru'])+1 <  datetime.now().hour:
-            self.update = 1
-        else:
-            self.update = 0
-        file.close()
-
-    def check_cache(self):
-        path = Path(f'cache/weather_{self.station}.json')
-        if path.exists():
-            self.cache_exists = 1
-
-    def get_cache(self):
-        if self.update == 0:
-            file = open(f'cache/weather_{self.station}.json')
-            data = json.load(file)
-            print(f'Stacja: {data['stacja']}\nData pomiaru: {data['data_pomiaru']}\nGodzina pomiaru: {data['godzina_pomiaru']}:00\nTemperatura: {data['temperatura']}°C')
-            file.close()
 
     def check_db_cache(self):
         y = datetime.now().year
@@ -135,25 +88,6 @@ class Weather_App:
                         print(f'{k.capitalize()}: {v}')
             else:
                     print('No internet connection.')
-
-
-    def run_app(self):
-        self.text_normalize()
-        self.check_config()
-        self.check_cache()
-        if self.available == 1:
-            if self.cache_exists == 1:
-                self.update_data()
-                if self.update == 1:
-                    self.save_data()
-                    self.get_data()
-                else:
-                    self.get_cache()
-            else:
-                self.save_data()
-                self.get_data()
-        else:
-            print('Station is unavailable.')
     
     def run_test_app(self):
         self.text_normalize()
