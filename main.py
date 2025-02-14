@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 class Weather_App:
     def __init__(self):
-        self.station = os.getenv("STATION")
+        self.station = 'Kłodzko'
         self.station_denormalize = self.station
         self.available = 0
         self.update = 0
