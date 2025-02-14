@@ -24,7 +24,6 @@ jobs:
 
       - name: Install Python packages
         run: |
-          set -e
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
