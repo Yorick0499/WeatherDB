@@ -83,7 +83,7 @@ class Weather_App:
                     for k,v in i.items():
                         k = k.replace('_', ' ')
                         if k == 'temperatura':
-                            v = v + '℃'
+                            v = str(v) + '℃'
                         print(f'{k.capitalize()}: {v}')
             else:
                     print('No internet connection.')
