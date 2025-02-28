@@ -67,7 +67,7 @@ class Weather_App:
                 for k,v in i.items():
                     k = k.replace('_', ' ')
                     if k == 'temperatura':
-                        v = v + '℃'
+                        v = str(v) + '℃'
                     print(f'{k.capitalize()}: {v}')
         else:
             url = f'https://danepubliczne.imgw.pl/api/data/synop/station/{self.station}/format/json'
