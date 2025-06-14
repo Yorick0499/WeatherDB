@@ -62,7 +62,7 @@ class Weather_App:
         else:
             find_doc = collection.count_documents({'stacja':self.station_denormalize, 'data_pomiaru':ymd, 'godzina_pomiaru':str((h-1)%24)})
         if find_doc > 0:
-            document = collection.find({'stacja':self.station_denormalize}, {'_id': 0,'id_stacji': 0, 'data_pomiaru': 0, 'godzina_pomiaru': 0, 'kierunek_wiatru': 0}).sort('_id', -1).limit(1)
+            document = collection.find({'stacja':self.station_denormalize}, {'_id': 0,'id_stacji': 0, 'kierunek_wiatru': 0}).sort('_id', -1).limit(1)
             for i in document:
                 for k,v in i.items():
                     k = k.replace('_', ' ')
@@ -78,7 +78,7 @@ class Weather_App:
             if response.status_code == 200:
                 data = response.json()
                 collection.insert_one(data)
-                document = collection.find({}, {'_id': 0,'id_stacji': 0, 'data_pomiaru': 0, 'godzina_pomiaru': 0, 'kierunek_wiatru': 0}).sort('_id', -1).limit(1)
+                document = collection.find({}, {'_id': 0,'id_stacji': 0, 'kierunek_wiatru': 0}).sort('_id', -1).limit(1)
                 for i in document:
                     for k,v in i.items():
                         k = k.replace('_', ' ')
